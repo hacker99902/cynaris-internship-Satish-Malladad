@@ -24,23 +24,22 @@ FEATURES = [
 ]
 
 def load_iris(csv_path):
-    """Download the Iris dataset if needed and load it into a DataFrame."""
-    csv_path.parent.mkdir(parents=True, exist_ok=True)
-
+    """Load the Iris dataset into a DataFrame."""
     if not csv_path.exists():
+        csv_path.parent.mkdir(parents=True, exist_ok=True)
         print("Downloading the Iris dataset...")
         urllib.request.urlretrieve(IRIS_URL, csv_path)
 
-    # The original UCI file has no column headings.
-    df = pd.read_csv(csv_path, header=None)
+    df = pd.read_csv(csv_path)
 
-    # Handle a CSV that was previously saved with column headings.
-    if str(df.iloc[0, 0]).strip().lower() == "sepal_length":
-        df = pd.read_csv(csv_path)
-    else:
-        df.columns = COLUMN_NAMES
+    # Remove the unnecessary ID column if present.
+    if "Id" in df.columns:
+        df = df.drop(columns=["Id"])
 
-    return df
+    # Standardize column names.
+    df.columns = COLUMN_NAMES
+
+    return df   
 
 
 def iris_statistics(df):
