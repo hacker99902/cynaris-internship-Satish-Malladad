@@ -1,0 +1,10 @@
+pandas
+numpy
+python-dotenv
+langchain
+langchain-community
+langchain-chroma
+langchain-ollama
+chromadb
+ollama
+jupyterlab
