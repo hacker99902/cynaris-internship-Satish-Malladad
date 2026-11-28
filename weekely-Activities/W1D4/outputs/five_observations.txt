@@ -1,0 +1,5 @@
+The dataset contains 21675 rows and 7 columns.
+It has 5 numeric columns.
+It has 2 categorical columns.
+There are 763 missing values in total.
+There are 0 duplicate rows.
